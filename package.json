@@ -1,0 +1,26 @@
+{
+  "name": "node-custom-error",
+  "version": "1.0.0",
+  "description": "Module that extends nodejs native error to create multiple domain errors",
+  "main": "index.js",
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/kasongoyo/node-domain-error.git"
+  },
+  "keywords": [
+    "Nodejs",
+    "errors"
+  ],
+  "author": "kasongoyo@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kasongoyo/node-custom-error/issues"
+  },
+  "homepage": "https://github.com/kasongoyo/node-custom-error#readme"
+}
