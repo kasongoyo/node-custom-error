@@ -7,10 +7,19 @@
 'use strict';
 
 class DomainError extends Error {
-  constructor(message) {
-    super(message);
+  constructor(error) {
+    super();
     // Ensure the name of this error is the same as the class name
-    this.name = `Domain${this.constructor.name}`;
+    this.name = this.constructor.name;
+    if (typeof error === 'string') {
+      // The argument passed is of string type so it means that's error message
+      this.message = error;
+    } else {
+      // The argument passed is not string, this means it is an error object
+      this.data = { error };
+      this.message = error.message;
+    }
+
     // This clips the constructor invocation from the stack trace.
     // It's not absolutely essential, but it does make the stack trace a little nicer.
     //  @see Node.js reference (bottom)
@@ -23,8 +32,7 @@ class DomainError extends Error {
  */
 class ValidationError extends DomainError {
   constructor(error) {
-    super(error.message);
-    this.data = { error };
+    super(error);
     this.statusCode = 400;
   }
 }
@@ -34,8 +42,7 @@ class ValidationError extends DomainError {
  */
 class ResourceLockedError extends DomainError {
   constructor(error) {
-    super(error.message);
-    this.data = { error };
+    super(error);
     this.statusCode = 423;
   }
 }
@@ -46,8 +53,7 @@ class ResourceLockedError extends DomainError {
  */
 class ForbiddenError extends DomainError {
   constructor(error) {
-    super(error.message);
-    this.data = { error };
+    super(error);
     this.statusCode = 403;
   }
 }
@@ -58,8 +64,7 @@ class ForbiddenError extends DomainError {
  */
 class ConflictError extends DomainError {
   constructor(error) {
-    super(error.message);
-    this.data = { error };
+    super(error);
     this.statusCode = 409;
   }
 }
@@ -70,8 +75,7 @@ class ConflictError extends DomainError {
  */
 class NotFoundError extends DomainError {
   constructor(error) {
-    super(error.message);
-    this.data = { error };
+    super(error);
     this.statusCode = 404;
   }
 }
@@ -83,8 +87,7 @@ class NotFoundError extends DomainError {
  */
 class CastError extends DomainError {
   constructor(error) {
-    super(error.message);
-    this.data = { error };
+    super(error);
     this.statusCode = 404;
   }
 }
